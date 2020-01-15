@@ -1,13 +1,23 @@
-var color = $("#box-one-color").text();
+/* 
+var color = window.document.querySelector('#box-one-color').value;
 
 $(document).ready(function(){
     $("#change-color-button").click(function(){
-        $("#first-div").css("background", color);
+        $("#first-div").css("background", 'color');
     });
 });
+*/
 
-
-$('#third-div').fadeIn("slow");
+$(document).ready(function(){
+    $("#fade-button").click(function(){
+        if ($("#third-div").is(":visible")) {
+            $("#third-div").fadeOut(1000);        
+        } else {
+            $("#third-div").fadeIn(1000);
+            
+        }
+    });
+});
 
 var clickButton = window.document.querySelector('#click-me');
 

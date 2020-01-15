@@ -6,7 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Week 02 jQuery</title>
 
-    <link rel="stylesheet" href="css/week-two-css.css">
+    <link rel="stylesheet" href="css/week-two-jquery-css.css">
+
+    <!-- This is Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- jQuery 3.x from Google -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
     <header>
@@ -18,15 +24,15 @@
         <h1>Week 02 Assignment</h1>
 
         <section>
-            <div id="first-div" class="block-divs">
+            <div id="first-div" class="block-divs col-md-4">
 
                 <p>Box 01</p>
             </div>
-            <div id="second-div" class="block-divs">
+            <div id="second-div" class="block-divs col-md-4">
 
                 <p>Box 02</p>
             </div>
-            <div id="third-div" class="block-divs">
+            <div id="third-div" class="block-divs col-md-4">
 
                 <p>Box 03</p>
             </div>            
@@ -40,14 +46,15 @@
         <input type="text" id="box-one-color">
         <button type="button" id="change-color-button">Change color</button>
 
+        <button type="button" id="fade-button">Toggle Visibility</button>
+
         
 
     </main>
     <footer>
         
     </footer>
-    <!-- jQuery 3.x from Google -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
     <!-- My own functins -->
     <script src="js/week-two-jquery.js"></script>
 </body>
