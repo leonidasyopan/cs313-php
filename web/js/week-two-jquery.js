@@ -1,12 +1,14 @@
-/* 
-var color = window.document.querySelector('#box-one-color').value;
+var color = $("#box-one-color").val();
 
 $(document).ready(function(){
     $("#change-color-button").click(function(){
+        /*
         $("#first-div").css("background", 'color');
+        */
+        alert(color);
     });
 });
-*/
+
 
 $(document).ready(function(){
     $("#fade-button").click(function(){
