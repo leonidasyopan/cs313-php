@@ -1,15 +1,11 @@
-var color = $("#box-one-color").val();
-
+// Function to change the color of first div according to user input
 $(document).ready(function(){
-    $("#change-color-button").click(function(){
-        /*
-        $("#first-div").css("background", 'color');
-        */
-        alert(color);
+    $("#change-color-button").click(function(){        
+        $("#first-div").css("background", $("#box-one-color").val());
     });
 });
 
-
+// Functioin to turn third div visibility on and off
 $(document).ready(function(){
     $("#fade-button").click(function(){
         if ($("#third-div").is(":visible")) {
