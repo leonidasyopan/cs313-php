@@ -11,8 +11,7 @@
 
             <ul class="icon-list">
                 <li><a href="https://www.facebook.com/leonidasyopan" target="_blank" ><i class="fab fa-facebook-f"></i>@leonidasyopan</a></li>         
-                <li><a href="https://github.com/leonidasyopan" target="_blank"><i class="fab fa-github"></i>@leonidasyopan</a></li>
-                <li><a href="http://leonidasyopan.com/" target="_blank"><i class="fa fa-globe"></i>leonidasyopan.com</a></li>
+                <li><a href="https://github.com/leonidasyopan" target="_blank"><i class="fab fa-github"></i>@leonidasyopan</a></li>                
             </ul>
 
         </div>
