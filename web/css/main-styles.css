@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway:300,400,700&display=swap');
+
+/*  
+// MOBILE FIRST APPROACH - GENERAL STYLE FIRST
+*/
+
+/* MAIN STYLESHEET */
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+.content-width {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+/* HEADER */ 
+
+header {
+    font-size: 1.5em;
+    height: 75px;
+    background: rgba(59, 145, 255, 1);
+    line-height: 75px;
+}
+
+main {
+    min-height: 600px;
+}
+
+header nav a {
+    text-decoration: none;
+    
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+/* FOOTER */
+
+footer {
+    background: rgba(59, 145, 255, 1);
+    color: #fff;    
+}
+
+footer a {
+    text-decoration: none;
+    color: #fff;
+}
+
+footer a:hover {
+    color: rgba(191, 43, 82, 1);
+    text-decoration: underline;
+}
+
+footer #contact-information-footer {
+    padding: 100px 20px;    
+}
+
+footer #contact-information-footer h2 {
+    font-size: 45px;
+}
+
+footer #contact-information-footer h2 + p {
+    font-weight: bold;
+    margin: 5px 0 50px 0;
+}
+
+footer #contact-information-footer div div:nth-of-type(2) p:first-of-type {    
+    margin: 0 0 15px 0;
+}
+
+footer #contact-information-footer ul {
+    list-style-type: none;
+}
+
+footer #contact-information-footer ul li {
+    margin: 3px 0;
+}
+
+footer #contact-information-footer ul i {
+    margin-right: 10px;
+    text-align: center;
+}
+
+footer #copyright-information-footer {
+    background: rgba(23, 90, 179, 1);  
+    padding: 30px 20px;    
+    font-size: smaller;
+}
+
+
+/*  
+// MEDIUM SCREENS - MEDIA QUERY BREAK
+*/
+@media (min-width:600px) {
+
+}
+
+/*  
+// BIG SCREENS - MEDIA QUERY BREAK
+*/
+@media (min-width:1025px) {     
+
+}
