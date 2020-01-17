@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway:300,400,700&display=swap');
-
 /*  
 // MOBILE FIRST APPROACH - GENERAL STYLE FIRST
 */
@@ -28,12 +26,19 @@ header {
 }
 
 main {
-    min-height: 600px;
+    min-height: 600px;    
+    padding-bottom: 50px;
 }
 
 header nav a {
     text-decoration: none;
-    
+    color: #fff;
+}
+
+header nav  a:hover {
+    color: rgba(23, 90, 179, 1); 
+    text-decoration: underline;
+    transition: all 300ms;
 }
 
 header nav ul {
@@ -96,6 +101,54 @@ footer #copyright-information-footer {
     font-size: smaller;
 }
 
+/* HOME PAGE */
+
+/* PROFESSIONAL PROFILE */
+
+#professional-profile {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    font-size: 16px;
+    color: rgb(53, 53, 53);
+    padding: 20px 10px;
+}
+
+#professional-profile #profile-headings {
+    grid-column: 1 / span 4;
+}
+
+#professional-profile #heading-name {    
+    font-size: 30px;
+    color: rgb(35, 35, 35);
+    margin-top: 40px;
+}
+
+#professional-profile #heading-title {    
+    color: rgb(100, 100, 100);
+    margin: 5px 0 20px 0; 
+}
+
+#profile-picture figure {    
+    overflow: hidden;
+    margin-bottom: 20px;
+    max-width: 100%;
+    margin-right: 20px;
+}
+
+#professional-profile p {
+    color: rgb(100, 100, 100);
+    margin: 20px 0;
+    line-height: 25px;
+}
+
+#profile-picture {
+    grid-column: 1 / span 5;
+}
+
+#professional-description {
+    grid-column: 1 / span 5;
+}
+
 
 /*  
 // MEDIUM SCREENS - MEDIA QUERY BREAK
@@ -109,4 +162,17 @@ footer #copyright-information-footer {
 */
 @media (min-width:1025px) {     
 
+    /* HOME PAGE */
+    
+    #professional-profile {
+        padding: 0 20px;
+    }    
+
+    #profile-picture {
+        grid-column: 1 / span 1;
+    }
+    
+    #professional-description {
+        grid-column: 2 / span 4;
+    }
 }

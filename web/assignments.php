@@ -15,7 +15,9 @@
         <?php include $_SERVER['DOCUMENT_ROOT'] . '/common/header.php'; ?> 
     </header> 
 
-    <main>
+    <main class="content-width">
+
+        <h1>Coming soon</h1>
 
     </main>
 
