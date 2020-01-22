@@ -17,7 +17,11 @@
 
     <main class="content-width">
 
-        <h1>Coming soon</h1>
+        <h1>Assingments</h1>
+
+        <ul>
+            <li><a href="week-03/index.php">PHP Shopping Cart</a></li>
+        </ul>
 
     </main>
 
