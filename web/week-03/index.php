@@ -2,6 +2,7 @@
 // Start the session
 session_start();
 ?>
+<?php require "application.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,15 +27,7 @@ session_start();
             <p>Please choose among our amazing selection of musical intruments</p>
 
             <section id="instruments-list">
-            <?php
-
-                $products = array("Acoustic Guitar Beginners", "Acoustic Guitar Premium", "Classic Electric Guitar", "Stylist Electric Guitar", "Modern Ukulele", "Amazing Viola");
-
-                $urls = array("img/acoustic-guitar-01.jpg", "img/acoustic-guitar-02.jpg", "img/guitar-01.jpg", "img/guitar-03.jpg", "img/ukulele-01.jpg", "img/viola-01.jpg");
-
-                $prices = array("115.50", "139.50", "259,50", "189.50", "105.50", "325.50");
-
-            ?>
+            
 
             <?php
                 for ($i=0; $i< count($products); $i++) {

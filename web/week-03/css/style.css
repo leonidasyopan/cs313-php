@@ -32,7 +32,7 @@ header {
 main {
     background-color: #ffffff;
     background-image: linear-gradient(180deg, #ffffff 0%, #d7e1ec 74%);
-    min-height: 750px;
+    min-height: 765px;
 }
 
 header nav a {
@@ -92,7 +92,7 @@ footer a:hover {
     text-align: center;
 }
 
-#main-home h1 {
+main h1 {
     font-size: 3em;
 }
 
@@ -128,28 +128,6 @@ footer a:hover {
 .instrument-offer figure img {
     position: relative;
 }
-
-
-/* 
-.price {
-    position: relative;
-    top: -5px;
-    margin: 0 auto;    
-    max-width: 55%;
-    background-color: #FF6554;
-    padding: 10px;
-    border-radius: 30px;
-    font-size: 2em;    
-}
-.price .price-symbol {
-    display: inline-block;
-    position: relative;
-    top: 7px;
-    left: 5px;
-    font-size: .5em;
-    vertical-align: top;    
-}
-*/
 
 .price {
     position: relative;
@@ -203,6 +181,64 @@ footer a:hover {
 
 .details-cart svg:hover {
     fill: #AACC1B;
+}
+
+/* Cart Page Style */
+
+#main-cart {
+    padding: 30px 0 30px 0
+}
+
+#main-cart h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+#main-cart table { 
+    width: 100%; 
+}
+
+#main-cart thead th:nth-of-type(1) {
+    width: 70%;
+}
+
+#main-cart tbody td:nth-of-type(2) {
+    text-align: center;
+}
+
+#main-cart tbody td:nth-of-type(3) {
+    text-align: center;
+}
+
+#main-cart table th, #main-cart table td { 
+    text-align: left; 
+    padding: .75em 0.25em;
+}
+
+#main-cart thead {
+    background: #1D4880;
+    color: #ffffff;    
+}
+
+#main-cart thead th  {
+    text-align: center;
+}
+
+#main-cart tbody tr:nth-child(odd){ 
+    
+}
+
+#main-cart table tr:nth-child(even){
+    background: rgb(233, 245, 255);
+}
+
+
+
+
+.shopping-cart-table svg {
+    height: 30px;
+
 }
 
 /*  
