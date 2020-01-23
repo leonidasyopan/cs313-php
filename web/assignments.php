@@ -16,13 +16,13 @@
     </header> 
 
     <main class="content-width">
+        <section id="assignments">
+            <h1>Assingments</h1>
 
-        <h1>Assingments</h1>
-
-        <ul>
-            <li><a href="week-03/index.php">PHP Shopping Cart</a></li>
-        </ul>
-
+            <ul>
+                <li><a href="week-03/index.php">PHP Shopping Cart</a></li>
+            </ul>
+        </section>
     </main>
 
     <footer>
