@@ -26,7 +26,8 @@ header {
 }
 
 main {
-    background: linear-gradient(135deg, rgb(237, 248, 252) 0%,rgb(247, 248, 248) 100%);
+    background-color: #ffffff;
+    background-image: linear-gradient(180deg, #ffffff 0%, #d7e1ec 74%);
     min-height: 750px;
 }
 
@@ -95,8 +96,67 @@ footer a:hover {
     margin: 50px 30px 0 0;
 }
 
+.instrument-offer figure {
+    border: 5px solid rgb(104, 168, 252);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
 .instrument-offer figcaption {
+    margin-top: -3px;
     text-align: center;
+    background-color: rgb(104, 168, 252);
+    padding: 5px;
+}
+
+.instrument-offer figure img {
+    position: relative;
+}
+
+.price {
+    position: relative;
+    top: -5px;
+    margin: 0 auto;    
+    max-width: 55%;
+    background-color: #FF6554;
+    padding: 10px;
+    border-radius: 30px;
+    font-size: 2em;    
+}
+
+.price .price-symbol {
+    display: inline-block;
+    position: relative;
+    top: 7px;
+    left: 5px;
+    font-size: .5em;
+    vertical-align: top;    
+}
+
+.details-cart {
+    margin-top: -15px;
+    background-color: #1D4880;
+    border: 5px solid #1D4880;;
+    border-radius: 10px;
+    display: flex;
+}
+
+.details-cart a:first-child {
+    width: 70%;
+    display: inline-block;    
+    border-radius: 8px;
+    text-decoration: none;
+    color: #1D4880;
+    background-color: #ffffff;   
+    text-align: center;
+    line-height: 35px;
+}
+
+.details-cart svg {
+    margin-left: 20px;
+    height: 30px;
+    text-align: right;
+    fill: #ffffff;
 }
 
 /*  
