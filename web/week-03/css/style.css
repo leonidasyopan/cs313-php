@@ -152,11 +152,20 @@ footer a:hover {
     line-height: 35px;
 }
 
+.details-cart a:first-child:hover {
+    color: #FF6554;
+    text-decoration: underline;
+}
+
 .details-cart svg {
     margin-left: 20px;
     height: 30px;
     text-align: right;
     fill: #ffffff;
+}
+
+.details-cart svg:hover {
+    fill: #AACC1B;
 }
 
 /*  
