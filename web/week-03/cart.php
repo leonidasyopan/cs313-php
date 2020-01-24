@@ -37,7 +37,6 @@ session_start();
                     </thead>
                     <tbody>
                 <?php
-                $total = 0;
                 foreach ( $_SESSION["item"] as $i ) {
                 ?>
                     <tr>

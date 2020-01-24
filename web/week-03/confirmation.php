@@ -36,22 +36,34 @@ $zip = htmlspecialchars($_POST["zip"]);
 
                 <?php
                     if ( isset($_SESSION["item"]) ) {
+                
+                ?>
+                    <h2>Thanks for buying:</h2>
+
+                    <ul>
+                <?php                        
+                        foreach ( $_SESSION["item"] as $i ) {
                 ?>
 
-                <p>Thanks for buying <?php echo( $_SESSION["quantity"][$i] ); ?>  <?php echo( $products[$_SESSION["item"][$i]] ); ?>(s) with us today.</p>
+                <li><?php echo( $_SESSION["quantity"][$i] ); ?> unit(s) of the <strong><?php echo( $products[$_SESSION["item"][$i]] ); ?></strong></li>
 
                 <?php
                     }
                 ?>
+                    </ul>
+                <?php
+                }
+                ?>
 
-                <p>You're purschased will be delivered in the following address:</p>
+                <h3>Your purschase will be delivered to the following address:</h3>
 
-                <p><?php $clientFullName; ?></p>
-                <p><?php $addressOne; ?></p>
-                <p><?php $addressTwo; ?></p>
-                <p><?php $state; ?></p>
-                <p><?php $city; ?></p>
-                <p><?php $zip; ?></p>
+                <div class="confirmed-address">
+                    <p><?=$clientFullName; ?></p>
+                    <p><?=$addressOne; ?></p>
+                    <p><?=$addressTwo; ?></p>
+                    <p><?=$city; ?>, <?=$state; ?></p>
+                    <p><?=$zip; ?></p>
+                </div>
 
             </section>
         </div>

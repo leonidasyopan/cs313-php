@@ -339,7 +339,25 @@ main h1 {
 
 /* Confirmation Page */
 
+#main-confirmation {
+    padding: 50px 0;
+}
 
+#main-confirmation h1 {
+    margin-bottom: 30px;
+}
+
+#main-confirmation h3 {
+    margin-bottom: 10px;
+}
+
+#main-confirmation ul {
+    margin: 10px 0 30px 30px;
+}
+
+.confirmed-address {
+    padding-left: 30px;
+}
 
 /*  
 // MEDIUM SCREENS - MEDIA QUERY BREAK
