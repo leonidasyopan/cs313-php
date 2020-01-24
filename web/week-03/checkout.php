@@ -22,11 +22,10 @@ session_start();
             <section>
 
                 <h1>Checkout | Provide Address</h1>
-
-
+                
                 <form action="confirmation.php" method="post" class="address-form">        
                     <fieldset>
-                        <legend>All fields are required</legend>
+                        <legend>*All fields are required</legend>
                         
                         <label for="clientFullName">Full Name</label>
                         <input type="text" id="clientFullName" name="clientFullName" required  />

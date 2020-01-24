@@ -15,6 +15,7 @@
 
 body {
     font-family: 'Roboto', sans-serif;
+    color: rgb(88, 88, 88);
 }
 
 .content-width {
@@ -32,7 +33,11 @@ header {
 main {
     background-color: #ffffff;
     background-image: linear-gradient(180deg, #ffffff 0%, #d7e1ec 74%);
-    min-height: 765px;
+    min-height: 765px;    
+}
+
+main section {
+    padding: 0 10px;
 }
 
 header nav a {
@@ -90,11 +95,21 @@ footer a:hover {
 .bottom-buttons a {
     display: inline-block;
     background-color: #1D4880;
-    padding: 10px 20px;
+    border: 3px solid #1D4880;
+    padding: 5px 20px 10px 20px;
     border-radius: 10px;
     text-decoration: none;
     color: #fff;
     margin: 3px;
+}
+
+
+.bottom-buttons a:hover {
+    background-color: rgba(29, 72, 128, 0.6);
+    color: #1D4880;
+    cursor: pointer;
+    border: 3px solid #1D4880;
+    transition: all 300ms;
 }
 
 .bottom-buttons svg {
@@ -267,17 +282,64 @@ main h1 {
     left: 5px;
 }
 
-/* Checkout Page */
-
-#main-checkout {
-    padding: 30px 0 30px 0;
-}
-
-
 .shopping-cart-table svg {
     height: 30px;
 
 }
+
+/* Checkout Page */
+
+#main-checkout {
+    padding: 30px 0 30px 0;
+    
+}
+
+.address-form {
+    margin: 30px auto;
+    width: 500px;
+}
+
+.address-form legend {
+    color: #FF6554;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.address-form fieldset {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.address-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 10px 0;
+}
+
+.address-form input[type="submit"] {
+    margin-top: 20px;
+    width: 50%;
+    position: relative; 
+    left: 50%;
+    background-color: #1D4880;
+    border: 3px solid #1D4880;    
+    border-radius: 10px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.address-form input[type="submit"]:hover {
+    background-color: rgba(29, 72, 128, 0.6);
+    color: #1D4880;
+    cursor: pointer;
+    border: 3px solid #1D4880;
+    transition: all 300ms;
+}
+
+/* Confirmation Page */
+
+
 
 /*  
 // MEDIUM SCREENS - MEDIA QUERY BREAK
