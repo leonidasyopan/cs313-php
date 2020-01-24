@@ -29,4 +29,22 @@
         $_SESSION["quantity"][$i] = 0;
         unset($_SESSION["item"][$i]);
     }
+
+    // Subtract 1 item from the item in the cart
+    if ( isset($_GET["minus"]) ) {
+        $i = $_GET["minus"];
+        $quantity = $_SESSION["quantity"][$i];
+        $quantity--;
+        $_SESSION["quantity"][$i] = $quantity;
+    }
+
+    // Add 1 item to the item in the cart
+    if ( isset($_GET["plus"]) ) {
+        $i = $_GET["plus"];
+        $quantity = $_SESSION["quantity"][$i] + 1;
+        $_SESSION["item"][$i] = $i;
+        $_SESSION["quantity"][$i] = $quantity;
+    }
+
+
 ?>

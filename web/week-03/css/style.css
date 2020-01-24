@@ -255,6 +255,18 @@ main h1 {
     background: rgb(233, 245, 255);
 }
 
+.minus-sign {
+    position: relative;
+    top: 8px;
+    left: -5px;
+}
+
+.plus-sign {
+    position: relative;
+    top: 14px;
+    left: 5px;
+}
+
 /* Checkout Page */
 
 #main-checkout {
