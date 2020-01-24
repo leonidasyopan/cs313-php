@@ -25,15 +25,15 @@ body {
 
 header {
     font-size: 1.5em;
-    height: 75px;
+    height: 10vh;
     background: rgba(59, 145, 255, 1);
-    line-height: 75px;
+    line-height: 10vh;
 }
 
 main {
     background-color: #ffffff;
     background-image: linear-gradient(180deg, #ffffff 0%, #d7e1ec 74%);
-    min-height: 765px;    
+    min-height: 80vh;    
 }
 
 main section {
@@ -71,8 +71,8 @@ header nav svg {
 footer {
     background: rgba(59, 145, 255, 1);
     color: #fff;    
-    min-height: 100px;
-    line-height: 100px;
+    min-height: 10vh;
+    line-height: 10vh;
     text-align: center;
 }
 
