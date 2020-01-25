@@ -4,7 +4,17 @@
 
     $urls = array("img/acoustic-guitar-01.jpg", "img/acoustic-guitar-02.jpg", "img/guitar-01.jpg", "img/guitar-03.jpg", "img/ukulele-01.jpg", "img/viola-01.jpg");
 
-    $prices = array("115.50", "139.50", "259,50", "189.50", "105.50", "325.50");
+    $prices = array("115.50", "139.50", "259.50", "189.50", "105.50", "325.50");
+
+    $productsDetails = array
+        (
+            array("Acoustic Guitar Beginners", "img/acoustic-guitar-01.jpg", 115.50),
+            array("Acoustic Guitar Premium", "img/acoustic-guitar-02.jpg", 139.50),
+            array("Classic Electric Guitar", "img/guitar-01.jpg", 259.50),
+            array("Stylist Electric Guitar", "img/guitar-03.jpg", 189.50),
+            array("Modern Ukulele", "img/ukulele-01.jpg", 105.50),
+            array("Amazing Viola", "img/viola-01.jpg", 325.50)
+        );
 
 
     // Inside the session stores the quantity added to each item
@@ -45,6 +55,5 @@
         $_SESSION["item"][$i] = $i;
         $_SESSION["quantity"][$i] = $quantity;
     }
-
 
 ?>
