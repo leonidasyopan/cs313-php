@@ -10,15 +10,16 @@ DROP SEQUENCE IF EXISTS unit_s1;
 
 
 CREATE TABLE public.users (
-    user_id      INTEGER         CONSTRAINT users_pk PRIMARY KEY    NOT NULL,
-    username     VARCHAR(100)                                       NOT NULL UNIQUE,
-    password     VARCHAR(255)                                       NOT NULL,
-    first_name   VARCHAR(30)                                        NOT NULL,   
-    middle_name  VARCHAR(30),
-    last_name    VARCHAR(30)                                        NOT NULL,
-    birthday     DATE,
-    email        VARCHAR(50)                                        NOT NULL,
-    phone_number VARCHAR(20)
+    user_id             INTEGER         CONSTRAINT users_pk PRIMARY KEY    NOT NULL,
+    username            VARCHAR(100)                                       NOT NULL UNIQUE,
+    password            VARCHAR(255)                                       NOT NULL,
+    first_name          VARCHAR(30)                                        NOT NULL,   
+    middle_name         VARCHAR(30),
+    last_name           VARCHAR(30)                                        NOT NULL,
+    birthday            DATE,
+    email               VARCHAR(50)                                        NOT NULL,
+    phone_number        VARCHAR(20),
+    returned_missionary BOOLEAN                                            NOT NULL
 );
 
 CREATE SEQUENCE users_s1 START WITH 1001;
@@ -68,7 +69,8 @@ INSERT INTO public.users (
     last_name, 
     birthday, 
     email, 
-    phone_number)
+    phone_number,
+    returned_missionary)
 VALUES (
     NEXTVAL('users_s1'), 
     'leonidasyopan', 
@@ -78,7 +80,8 @@ VALUES (
     'Yopan',
     '10-08-1985',
     'leonidasyopan@gmail.com',
-    '+55 48 99823-5707');
+    '+55 48 99823-5707',
+    'true');
 
 INSERT INTO public.users (
     user_id, 
@@ -89,7 +92,8 @@ INSERT INTO public.users (
     last_name, 
     birthday, 
     email, 
-    phone_number)
+    phone_number,
+    returned_missionary)
 VALUES (
     NEXTVAL('users_s1'), 
     'larissayopan', 
@@ -99,16 +103,8 @@ VALUES (
     'Yopan',
     '05-06-1991',
     'larissayopan@gmail.com',
-    '+55 48 99821-1421');
-
-/* UPDATING INFOR FROM USER */     
-
-UPDATE users
-SET password = '06051991',
-    birthday = '08-10-1985'
-WHERE
-    username = 'larissayopan';
-
+    '+55 48 99821-1421',
+    'false');
 
 /* INSERT UNITS INTO UNIT TABLE */
 
@@ -162,11 +158,6 @@ VALUES (
     '03-23-2007'
 );
 
-/* A DELETE STATEMENT IN CASE DATA WAS WRONGLY INSERTED */
-
-DELETE FROM public.missionary_service 
-    WHERE user_id = (SELECT user_id FROM users WHERE username = 'leonidasyopan');
-
 /* INSERT TRANSFER INTO MISSIONARY_TIMELINE */
 
 INSERT INTO public.missionary_timeline (
@@ -182,6 +173,42 @@ VALUES (
     '07-10-2005',
     '08-24-2005'
 );
+
+
+/***************************************
+***** COMMANDS USUALLY EVENTUALLY ******
+***************************************/
+
+/* ADD NEW COLUMN TO A TABLE */
+ALTER TABLE users
+    ADD returned_missionary BOOLEAN NOT NULL DEFAULT 'TRUE';
+
+/* ALTER TABLE COLUMN */
+
+ALTER TABLE users 
+    ALTER COLUMN returned_missionary DROP DEFAULT;
+
+/* UPDATING INFO FROM USER */     
+
+UPDATE users
+SET 
+    returned_missionary = 'FALSE'
+WHERE
+    username = 'larissayopan';
+
+UPDATE users
+SET password = '06051991',
+    birthday = '08-10-1985'
+WHERE
+    username = 'larissayopan';
+
+/* A DELETE STATEMENT IN CASE DATA WAS WRONGLY INSERTED */
+
+DELETE FROM public.missionary_service 
+    WHERE user_id = (SELECT user_id FROM users WHERE username = 'leonidasyopan');
+
+
+
 
 /* JOIN TABLES */
 
