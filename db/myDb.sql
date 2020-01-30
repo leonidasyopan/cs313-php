@@ -148,21 +148,53 @@ VALUES (
     'Brasil'    
 );
 
+/* INSERT MISSION INTO MISSIONARY SERVICE TABBE */
 
-INSERT INTO public.missionary_service VALUES
-    (NEXTVAL('missionary_timeline_s1'), 'Sunday Evening', '2015', 'October');
+INSERT INTO public.missionary_service (
+    user_id,
+    missionary_title,
+    mission_start,
+    mission_end)
+VALUES (
+    (SELECT user_id FROM users WHERE username = 'leonidasyopan'),
+    'Elder Yopán',
+    '03-23-2005',
+    '03-23-2007'
+);
 
-INSERT INTO public.missionary_timeline VALUES
-    (NEXTVAL('unit_s1'), '1003', '1003', '1002', 'Elder Bednar said something cool about something nice');
+/* A DELETE STATEMENT IN CASE DATA WAS WRONGLY INSERTED */
+
+DELETE FROM public.missionary_service 
+    WHERE user_id = (SELECT user_id FROM users WHERE username = 'leonidasyopan');
+
+/* INSERT TRANSFER INTO MISSIONARY_TIMELINE */
+
+INSERT INTO public.missionary_timeline (
+    user_id,
+    unit_id,
+    companion_name,
+    transfer_start,
+    transfer_end)
+VALUES (
+    (SELECT user_id FROM users WHERE username = 'leonidasyopan'),
+    (SELECT unit_id FROM unit WHERE unit_name = 'Ramo Oswaldo Cruz'),
+    'Elder Evans',
+    '07-10-2005',
+    '08-24-2005'
+);
 
 /* JOIN TABLES */
 
 SELECT
     us.first_name,
     us.last_name,
+    ms.missionary_title,
     un.unit_name,
-    un.stake_name
+    un.stake_name,
+    mt.companion_name
 FROM
     public.users us
-INNER JOIN public.unit un ON us.user_id = n.user_id
-;
+INNER JOIN public.missionary_timeline mt ON us.user_id = mt.user_id
+INNER JOIN public.unit un ON un.unit_id = mt.unit_id
+INNER JOIN public.missionary_service ms ON us.user_id = ms.user_id
+    WHERE un.unit_name = 'Ramo Oswaldo Cruz';
