@@ -174,6 +174,20 @@ VALUES (
     '08-24-2005'
 );
 
+INSERT INTO public.missionary_timeline (
+    user_id,
+    unit_id,
+    companion_name,
+    transfer_start,
+    transfer_end)
+VALUES (
+    (SELECT user_id FROM users WHERE username = 'leonidasyopan'),
+    (SELECT unit_id FROM unit WHERE unit_name = 'Ramo Nova Tupã'),
+    'Elder Price',
+    '07-03-2006',
+    '08-05-2006'
+);
+
 
 /***************************************
 ***** COMMANDS USUALLY EVENTUALLY ******
