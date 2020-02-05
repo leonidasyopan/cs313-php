@@ -39,6 +39,7 @@ CREATE SEQUENCE unit_s1 START WITH 1001;
 CREATE TABLE public.missionary_service (
     user_id             INTEGER         NOT NULL,
     missionary_title    VARCHAR(30)     NOT NULL,
+    mission_local       VARCHAR(30)     NOT NULL,
     mission_start       DATE            NOT NULL,
     mission_end         DATE            NOT NULL,
     CONSTRAINT missionary_service_fk_1    FOREIGN KEY(user_id)      REFERENCES public.users(user_id)            
@@ -149,11 +150,13 @@ VALUES (
 INSERT INTO public.missionary_service (
     user_id,
     missionary_title,
+    mission_local,
     mission_start,
     mission_end)
 VALUES (
     (SELECT user_id FROM users WHERE username = 'leonidasyopan'),
     'Elder Yopán',
+    'Missão Brasil Londrina',
     '03-23-2005',
     '03-23-2007'
 );
@@ -229,6 +232,7 @@ DELETE FROM public.missionary_service
 SELECT
     us.first_name || ' ' || us.last_name AS full_name,
     ms.missionary_title AS missionary_name,
+    ms.mission_local,
     mt.companion_name AS companion,
     un.unit_name AS ward_or_branch,
     un.stake_name AS stake,
