@@ -231,7 +231,9 @@ SELECT
     ms.missionary_title AS missionary_name,
     mt.companion_name AS companion,
     un.unit_name AS ward_or_branch,
-    un.stake_name AS stake
+    un.stake_name AS stake,
+    mt.transfer_start,
+    mt.transfer_end
 FROM
     public.users us
 INNER JOIN public.missionary_timeline mt ON us.user_id = mt.user_id
