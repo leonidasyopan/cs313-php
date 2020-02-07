@@ -13,13 +13,15 @@ CREATE TABLE public.users (
     user_id             INTEGER         CONSTRAINT users_pk PRIMARY KEY    NOT NULL,
     username            VARCHAR(100)                                       NOT NULL UNIQUE,
     password            VARCHAR(255)                                       NOT NULL,
-    first_name          VARCHAR(30)                                        NOT NULL,   
+    first_name          VARCHAR(30),   
     middle_name         VARCHAR(30),
-    last_name           VARCHAR(30)                                        NOT NULL,
+    last_name           VARCHAR(30),
     birthday            DATE,
     email               VARCHAR(50)                                        NOT NULL,
     phone_number        VARCHAR(20),
-    returned_missionary BOOLEAN                                            NOT NULL
+    returned_missionary BOOLEAN,
+    img_src             VARCHAR(255),
+    user_create_date    DATE
 );
 
 CREATE SEQUENCE users_s1 START WITH 1001;
@@ -71,7 +73,8 @@ INSERT INTO public.users (
     birthday, 
     email, 
     phone_number,
-    returned_missionary)
+    returned_missionary,
+    user_create_date)
 VALUES (
     NEXTVAL('users_s1'), 
     'leonidasyopan', 
@@ -82,7 +85,8 @@ VALUES (
     '10-08-1985',
     'leonidasyopan@gmail.com',
     '+55 48 99823-5707',
-    'true');
+    'true',
+    current_timestamp);
 
 INSERT INTO public.users (
     user_id, 
@@ -94,7 +98,8 @@ INSERT INTO public.users (
     birthday, 
     email, 
     phone_number,
-    returned_missionary)
+    returned_missionary,
+    user_create_date)
 VALUES (
     NEXTVAL('users_s1'), 
     'larissayopan', 
@@ -105,7 +110,8 @@ VALUES (
     '05-06-1991',
     'larissayopan@gmail.com',
     '+55 48 99821-1421',
-    'false');
+    'false',
+    current_timestamp);
 
 /* INSERT UNITS INTO UNIT TABLE */
 
