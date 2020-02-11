@@ -102,6 +102,31 @@ INSERT INTO public.users (
     user_create_date)
 VALUES (
     NEXTVAL('users_s1'), 
+    'elderevans', 
+    '06051991', 
+    'Jonathan',
+    '',
+    'Evans',
+    '05-06-1991',
+    'teste@gmail.com',
+    '+0 804 821-1421',
+    'true',
+    current_timestamp);
+
+    INSERT INTO public.users (
+    user_id, 
+    username, 
+    password, 
+    first_name, 
+    middle_name, 
+    last_name, 
+    birthday, 
+    email, 
+    phone_number,
+    returned_missionary,
+    user_create_date)
+VALUES (
+    NEXTVAL('users_s1'), 
     'larissayopan', 
     '06051991', 
     'Larissa',
