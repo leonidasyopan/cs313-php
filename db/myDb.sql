@@ -102,7 +102,7 @@ INSERT INTO public.users (
     user_create_date)
 VALUES (
     NEXTVAL('users_s1'), 
-    'elderevans', 
+    'evanselder', 
     '06051991', 
     'Jonathan',
     '',
@@ -275,3 +275,9 @@ INNER JOIN public.missionary_timeline mt ON us.user_id = mt.user_id
 INNER JOIN public.unit un ON un.unit_id = mt.unit_id
 INNER JOIN public.missionary_service ms ON us.user_id = ms.user_id
     WHERE un.unit_name = 'Ramo Oswaldo Cruz';
+
+
+    CURRVAL('users_s1');
+    CURRVAL('unit_s1')
+
+
