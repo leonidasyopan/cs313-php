@@ -10,7 +10,7 @@ DROP SEQUENCE IF EXISTS unit_s1;
 
 
 CREATE TABLE public.users (
-    user_id             INTEGER         CONSTRAINT users_pk PRIMARY KEY    NOT NULL,
+    users_id             SERIAL         CONSTRAINT users_pk PRIMARY KEY    NOT NULL,
     username            VARCHAR(100)                                       NOT NULL UNIQUE,
     password            VARCHAR(255)                                       NOT NULL,
     first_name          VARCHAR(30),   
@@ -24,10 +24,8 @@ CREATE TABLE public.users (
     user_create_date    DATE
 );
 
-CREATE SEQUENCE users_s1 START WITH 1001;
-
 CREATE TABLE public.unit (
-    unit_id         INTEGER     CONSTRAINT unit_pk PRIMARY KEY      NOT NULL,
+    unit_id         SERIAL     CONSTRAINT unit_pk PRIMARY KEY      NOT NULL,
     unit_number     INTEGER,
     unit_name       VARCHAR(50)                                     NOT NULL,
     stake_name      VARCHAR(50)                                     NOT NULL,
@@ -36,35 +34,29 @@ CREATE TABLE public.unit (
     country         VARCHAR(50)                                     NOT NULL
 );
 
-CREATE SEQUENCE unit_s1 START WITH 1001;
 
 CREATE TABLE public.missionary_service (
-    user_id             INTEGER         NOT NULL,
+    users_id             INTEGER         NOT NULL,
     missionary_title    VARCHAR(30)     NOT NULL,
     mission_local       VARCHAR(30)     NOT NULL,
     mission_start       DATE            NOT NULL,
     mission_end         DATE            NOT NULL,
-    CONSTRAINT missionary_service_fk_1    FOREIGN KEY(user_id)      REFERENCES public.users(user_id)            
+    CONSTRAINT missionary_service_fk_1    FOREIGN KEY(users_id)      REFERENCES public.users(users_id)            
 );
 
-CREATE SEQUENCE missionary_service_s1 START WITH 1001;
-
 CREATE TABLE public.missionary_timeline (
-    user_id             INTEGER             NOT NULL,
+    users_id             INTEGER             NOT NULL,
     unit_id             INTEGER             NOT NULL,
     companion_name      VARCHAR(30)         NOT NULL,
     transfer_start      DATE                NOT NULL,
     transfer_end        DATE                NOT NULL,
-    CONSTRAINT missionary_timeline_fk_1    FOREIGN KEY(user_id)      REFERENCES public.users(user_id),
+    CONSTRAINT missionary_timeline_fk_1    FOREIGN KEY(users_id)      REFERENCES public.users(users_id),
     CONSTRAINT missionary_timeline_fk_2    FOREIGN KEY(unit_id)      REFERENCES public.unit(unit_id)   
 );
-
-CREATE SEQUENCE missionary_timeline_s1 START WITH 1001;
 
 /* INSERT USERS INTO USERS TABLE */ 
 
 INSERT INTO public.users (
-    user_id, 
     username, 
     password, 
     first_name, 
@@ -76,7 +68,6 @@ INSERT INTO public.users (
     returned_missionary,
     user_create_date)
 VALUES (
-    NEXTVAL('users_s1'), 
     'leonidasyopan', 
     '10081985', 
     'Leonidas',
@@ -89,7 +80,6 @@ VALUES (
     current_timestamp);
 
 INSERT INTO public.users (
-    user_id, 
     username, 
     password, 
     first_name, 
@@ -100,8 +90,7 @@ INSERT INTO public.users (
     phone_number,
     returned_missionary,
     user_create_date)
-VALUES (
-    NEXTVAL('users_s1'), 
+VALUES ( 
     'evanselder', 
     '06051991', 
     'Jonathan',
@@ -113,8 +102,7 @@ VALUES (
     'true',
     current_timestamp);
 
-    INSERT INTO public.users (
-    user_id, 
+INSERT INTO public.users (
     username, 
     password, 
     first_name, 
@@ -126,7 +114,6 @@ VALUES (
     returned_missionary,
     user_create_date)
 VALUES (
-    NEXTVAL('users_s1'), 
     'larissayopan', 
     '06051991', 
     'Larissa',
@@ -141,7 +128,7 @@ VALUES (
 /* INSERT UNITS INTO UNIT TABLE */
 
 INSERT INTO public.unit (
-    unit_id, 
+    unit_id,
     unit_number, 
     unit_name,
     stake_name,
@@ -149,7 +136,23 @@ INSERT INTO public.unit (
     state,
     country) 
 VALUES (
-    NEXTVAL('unit_s1'),
+    NEXTVAL('unit_unit_id_seq'),
+    NULL,
+    'Ala Forquilhinhas',
+    'Estaca São José',
+    'São José',
+    'Santa Catarina',
+    'Brasil'    
+);
+
+INSERT INTO public.unit (
+    unit_number, 
+    unit_name,
+    stake_name,
+    city,
+    state,
+    country) 
+VALUES (
     NULL,
     'Ramo Oswaldo Cruz',
     'Distrito Tupã',
@@ -159,7 +162,6 @@ VALUES (
 );
 
 INSERT INTO public.unit (
-    unit_id, 
     unit_number, 
     unit_name,
     stake_name,
@@ -167,7 +169,6 @@ INSERT INTO public.unit (
     state,
     country) 
 VALUES (
-    NEXTVAL('unit_s1'),
     NULL,
     'Ramo Nova Tupã',
     'Distrito Tupã',
@@ -179,29 +180,43 @@ VALUES (
 /* INSERT MISSION INTO MISSIONARY SERVICE TABBE */
 
 INSERT INTO public.missionary_service (
-    user_id,
+    users_id,
     missionary_title,
     mission_local,
     mission_start,
     mission_end)
 VALUES (
-    (SELECT user_id FROM users WHERE username = 'leonidasyopan'),
+    (SELECT users_id FROM users WHERE username = 'leonidasyopan'),
     'Elder Yopán',
     'Missão Brasil Londrina',
     '03-23-2005',
     '03-23-2007'
 );
 
+INSERT INTO public.missionary_service (
+    users_id, 
+    missionary_title, 
+    mission_local, 
+    mission_start, 
+    mission_end) 
+VALUES (
+    CURRVAL('users_users_id_seq'),
+    'Elder Yopán',
+    'Missão Brasil Brasília',
+    '06-06-2006',
+    '06-06-2008'
+);
+
 /* INSERT TRANSFER INTO MISSIONARY_TIMELINE */
 
 INSERT INTO public.missionary_timeline (
-    user_id,
+    users_id,
     unit_id,
     companion_name,
     transfer_start,
     transfer_end)
 VALUES (
-    (SELECT user_id FROM users WHERE username = 'leonidasyopan'),
+    (SELECT users_id FROM users WHERE username = 'leonidasyopan'),
     (SELECT unit_id FROM unit WHERE unit_name = 'Ramo Oswaldo Cruz'),
     'Elder Evans',
     '07-10-2005',
@@ -209,13 +224,13 @@ VALUES (
 );
 
 INSERT INTO public.missionary_timeline (
-    user_id,
+    users_id,
     unit_id,
     companion_name,
     transfer_start,
     transfer_end)
 VALUES (
-    (SELECT user_id FROM users WHERE username = 'leonidasyopan'),
+    (SELECT users_id FROM users WHERE username = 'leonidasyopan'),
     (SELECT unit_id FROM unit WHERE unit_name = 'Ramo Nova Tupã'),
     'Elder Price',
     '07-03-2006',
@@ -271,13 +286,11 @@ SELECT
     mt.transfer_end
 FROM
     public.users us
-INNER JOIN public.missionary_timeline mt ON us.user_id = mt.user_id
+INNER JOIN public.missionary_timeline mt ON us.users_id = mt.users_id
 INNER JOIN public.unit un ON un.unit_id = mt.unit_id
-INNER JOIN public.missionary_service ms ON us.user_id = ms.user_id
+INNER JOIN public.missionary_service ms ON us.users_id = ms.users_id
     WHERE un.unit_name = 'Ramo Oswaldo Cruz';
 
 
-    CURRVAL('users_s1');
-    CURRVAL('unit_s1')
-
-
+CURRVAL('users_users_id_seq');
+CURRVAL('unit_unit_id_seq')
