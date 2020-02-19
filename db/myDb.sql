@@ -1,83 +1,88 @@
-DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS user_access CASCADE;
+DROP TABLE IF EXISTS user_profile CASCADE;
 DROP TABLE IF EXISTS missionary_service CASCADE;
 DROP TABLE IF EXISTS missionary_timeline CASCADE;
 DROP TABLE IF EXISTS unit CASCADE;
 
-DROP SEQUENCE IF EXISTS users_s1;
-DROP SEQUENCE IF EXISTS missionary_service_s1;
-DROP SEQUENCE IF EXISTS missionary_timeline_s1;
-DROP SEQUENCE IF EXISTS unit_s1;
+CREATE TABLE public.user_access (
+    user_id             SERIAL         PRIMARY KEY      NOT NULL,
+    username            VARCHAR(100)                    NOT NULL    UNIQUE,
+    password            VARCHAR(255)                    NOT NULL,
+    email               VARCHAR(50)                     NOT NULL,    
+    user_create_date    DATE
+);
 
-
-CREATE TABLE public.users (
-    users_id             SERIAL         CONSTRAINT users_pk PRIMARY KEY    NOT NULL,
-    username            VARCHAR(100)                                       NOT NULL UNIQUE,
-    password            VARCHAR(255)                                       NOT NULL,
+CREATE TABLE public.user_profile (
+    user_id             INTEGER                         NOT NULL,
     first_name          VARCHAR(30),   
     middle_name         VARCHAR(30),
     last_name           VARCHAR(30),
     birthday            DATE,
-    email               VARCHAR(50)                                        NOT NULL,
     phone_number        VARCHAR(20),
     returned_missionary BOOLEAN,
     img_src             VARCHAR(255),
-    user_create_date    DATE
+    CONSTRAINT user_profile_fk_1    FOREIGN KEY(user_id)      REFERENCES public.user_access (user_id)
 );
 
 CREATE TABLE public.unit (
-    unit_id         SERIAL     CONSTRAINT unit_pk PRIMARY KEY      NOT NULL,
+    unit_id         SERIAL      PRIMARY KEY         NOT NULL,
     unit_number     INTEGER,
-    unit_name       VARCHAR(50)                                     NOT NULL,
-    stake_name      VARCHAR(50)                                     NOT NULL,
-    city            VARCHAR(50)                                     NOT NULL,
-    state           VARCHAR(50)                                     NOT NULL,
-    country         VARCHAR(50)                                     NOT NULL
+    unit_name       VARCHAR(50),
+    stake_name      VARCHAR(50),
+    city            VARCHAR(50),
+    state           VARCHAR(50),
+    country         VARCHAR(50)
 );
 
 
 CREATE TABLE public.missionary_service (
-    users_id             INTEGER         NOT NULL,
-    missionary_title    VARCHAR(30)     NOT NULL,
-    mission_local       VARCHAR(30)     NOT NULL,
-    mission_start       DATE            NOT NULL,
-    mission_end         DATE            NOT NULL,
-    CONSTRAINT missionary_service_fk_1    FOREIGN KEY(users_id)      REFERENCES public.users(users_id)            
+    user_id                 INTEGER         NOT NULL,
+    missionary_title        VARCHAR(30)     NOT NULL,
+    mission_local           VARCHAR(30)     NOT NULL,
+    mission_start           DATE            NOT NULL,
+    mission_end             DATE            NOT NULL,
+    CONSTRAINT missionary_service_fk_1    FOREIGN KEY(user_id)      REFERENCES public.user_access(user_id)            
 );
 
 CREATE TABLE public.missionary_timeline (
-    users_id             INTEGER             NOT NULL,
+    user_id             INTEGER             NOT NULL,
     unit_id             INTEGER             NOT NULL,
     companion_name      VARCHAR(30)         NOT NULL,
     transfer_start      DATE                NOT NULL,
     transfer_end        DATE                NOT NULL,
-    CONSTRAINT missionary_timeline_fk_1    FOREIGN KEY(users_id)      REFERENCES public.users(users_id),
+    CONSTRAINT missionary_timeline_fk_1    FOREIGN KEY(user_id)      REFERENCES public.user_access(user_id),
     CONSTRAINT missionary_timeline_fk_2    FOREIGN KEY(unit_id)      REFERENCES public.unit(unit_id)   
 );
 
 /* INSERT USERS INTO USERS TABLE */ 
 
-INSERT INTO public.users (
+INSERT INTO public.user_access (
     username, 
     password, 
-    first_name, 
-    middle_name, 
-    last_name, 
-    birthday, 
-    email, 
-    phone_number,
-    returned_missionary,
+    email,
     user_create_date)
 VALUES (
     'leonidasyopan', 
     '10081985', 
+    'leonidasyopan@gmail.com',
+    current_timestamp);
+
+INSERT INTO public.user_profile (
+    user_id,
+    first_name, 
+    middle_name, 
+    last_name, 
+    birthday, 
+    phone_number,
+    returned_missionary,
+VALUES (
+    (SELECT user_id FROM user_access WHERE username = 'leonidasyopan'),
     'Leonidas',
     '',
     'Yopan',
     '10-08-1985',
-    'leonidasyopan@gmail.com',
     '+55 48 99823-5707',
-    'true',
-    current_timestamp);
+    'true');
 
 INSERT INTO public.users (
     username, 
@@ -236,6 +241,8 @@ VALUES (
     '07-03-2006',
     '08-05-2006'
 );
+
+INSERT INTO public.missionary_timeline (users_id, unit_id, companion_name, transfer_start, transfer_end) VALUES (CURRVAL('users_users_id_seq'), CURRVAL('unit_unit_id_seq'), 'Elder Pereira', '2007-07-01', '2009-07-01');
 
 
 /***************************************
