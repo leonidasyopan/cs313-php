@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS missionary_service CASCADE;
 DROP TABLE IF EXISTS missionary_timeline CASCADE;
 DROP TABLE IF EXISTS unit CASCADE;
 
-CREATE TABLE public.user_access (
+CREATE TABLE user_access (
     user_id             SERIAL         PRIMARY KEY      NOT NULL,
     username            VARCHAR(100)                    NOT NULL    UNIQUE,
     password            VARCHAR(255)                    NOT NULL,
@@ -12,7 +12,9 @@ CREATE TABLE public.user_access (
     user_create_date    DATE
 );
 
-CREATE TABLE public.user_profile (
+SELECT * FROM user_access;
+
+CREATE TABLE user_profile (
     user_id             INTEGER                         NOT NULL,
     first_name          VARCHAR(30),   
     middle_name         VARCHAR(30),
@@ -21,10 +23,12 @@ CREATE TABLE public.user_profile (
     phone_number        VARCHAR(20),
     returned_missionary BOOLEAN,
     img_src             VARCHAR(255),
-    CONSTRAINT user_profile_fk_1    FOREIGN KEY(user_id)      REFERENCES public.user_access (user_id)
+    CONSTRAINT user_profile_fk_1    FOREIGN KEY(user_id)      REFERENCES user_access(user_id)
 );
 
-CREATE TABLE public.unit (
+SELECT * FROM user_profile;
+
+CREATE TABLE unit (
     unit_id         SERIAL      PRIMARY KEY         NOT NULL,
     unit_number     INTEGER,
     unit_name       VARCHAR(50),
@@ -34,29 +38,35 @@ CREATE TABLE public.unit (
     country         VARCHAR(50)
 );
 
+SELECT * FROM unit;
 
-CREATE TABLE public.missionary_service (
+CREATE TABLE missionary_service (
     user_id                 INTEGER         NOT NULL,
     missionary_title        VARCHAR(30)     NOT NULL,
     mission_local           VARCHAR(30)     NOT NULL,
     mission_start           DATE            NOT NULL,
     mission_end             DATE            NOT NULL,
-    CONSTRAINT missionary_service_fk_1    FOREIGN KEY(user_id)      REFERENCES public.user_access(user_id)            
+    CONSTRAINT missionary_service_fk_1    FOREIGN KEY(user_id)      REFERENCES user_access(user_id)            
 );
 
-CREATE TABLE public.missionary_timeline (
+SELECT * FROM missionary_service;
+
+CREATE TABLE missionary_timeline (
     user_id             INTEGER             NOT NULL,
     unit_id             INTEGER             NOT NULL,
     companion_name      VARCHAR(30)         NOT NULL,
     transfer_start      DATE                NOT NULL,
     transfer_end        DATE                NOT NULL,
-    CONSTRAINT missionary_timeline_fk_1    FOREIGN KEY(user_id)      REFERENCES public.user_access(user_id),
-    CONSTRAINT missionary_timeline_fk_2    FOREIGN KEY(unit_id)      REFERENCES public.unit(unit_id)   
+    CONSTRAINT missionary_timeline_fk_1    FOREIGN KEY(user_id)      REFERENCES user_access(user_id),
+    CONSTRAINT missionary_timeline_fk_2    FOREIGN KEY(unit_id)      REFERENCES unit(unit_id)   
 );
+
+SELECT * FROM missionary_timeline;
+
 
 /* INSERT USERS INTO USERS TABLE */ 
 
-INSERT INTO public.user_access (
+INSERT INTO user_access (
     username, 
     password, 
     email,
@@ -67,14 +77,16 @@ VALUES (
     'leonidasyopan@gmail.com',
     current_timestamp);
 
-INSERT INTO public.user_profile (
+SELECT * FROM user_access;
+
+INSERT INTO user_profile (
     user_id,
     first_name, 
     middle_name, 
     last_name, 
     birthday, 
     phone_number,
-    returned_missionary,
+    returned_missionary)
 VALUES (
     (SELECT user_id FROM user_access WHERE username = 'leonidasyopan'),
     'Leonidas',
@@ -84,55 +96,75 @@ VALUES (
     '+55 48 99823-5707',
     'true');
 
-INSERT INTO public.users (
+SELECT * FROM user_profile;
+
+INSERT INTO user_access (
     username, 
     password, 
-    first_name, 
-    middle_name, 
-    last_name, 
-    birthday, 
-    email, 
-    phone_number,
-    returned_missionary,
+    email,
     user_create_date)
 VALUES ( 
     'evanselder', 
     '06051991', 
-    'Jonathan',
-    '',
-    'Evans',
-    '05-06-1991',
     'teste@gmail.com',
-    '+0 804 821-1421',
-    'true',
     current_timestamp);
 
-INSERT INTO public.users (
-    username, 
-    password, 
+SELECT * FROM user_access;
+    
+INSERT INTO user_profile (
+    user_id,
     first_name, 
     middle_name, 
     last_name, 
     birthday, 
-    email, 
     phone_number,
-    returned_missionary,
+    returned_missionary)
+VALUES ( 
+    (SELECT user_id FROM user_access WHERE username = 'evanselder'),
+    'Jonathan',
+    '',
+    'Evans',
+    '05-06-1991',
+    '+0 804 821-1421',
+    'true');
+
+SELECT * FROM user_profile;
+
+INSERT INTO user_access (
+    username, 
+    password, 
+    email, 
     user_create_date)
 VALUES (
     'larissayopan', 
     '06051991', 
+    'larissayopan@gmail.com',
+    current_timestamp);
+
+SELECT * FROM user_access;
+
+INSERT INTO user_profile (
+    user_id,
+    first_name, 
+    middle_name, 
+    last_name, 
+    birthday, 
+    phone_number,
+    returned_missionary)
+VALUES (
+    (SELECT user_id FROM user_access WHERE username = 'larissayopan'),
     'Larissa',
     'Machado Motta',
     'Yopan',
     '05-06-1991',
-    'larissayopan@gmail.com',
     '+55 48 99821-1421',
-    'false',
-    current_timestamp);
+    'false');
+
+SELECT * FROM user_profile;
 
 /* INSERT UNITS INTO UNIT TABLE */
 
-INSERT INTO public.unit (
+INSERT INTO unit (
     unit_id,
     unit_number, 
     unit_name,
@@ -150,7 +182,9 @@ VALUES (
     'Brasil'    
 );
 
-INSERT INTO public.unit (
+SELECT * FROM unit;
+
+INSERT INTO unit (
     unit_number, 
     unit_name,
     stake_name,
@@ -166,7 +200,9 @@ VALUES (
     'Brasil'    
 );
 
-INSERT INTO public.unit (
+SELECT * FROM unit;
+
+INSERT INTO unit (
     unit_number, 
     unit_name,
     stake_name,
@@ -182,10 +218,12 @@ VALUES (
     'Brasil'    
 );
 
+SELECT * FROM unit;
+
 /* INSERT MISSION INTO MISSIONARY SERVICE TABBE */
 
-INSERT INTO public.missionary_service (
-    users_id,
+INSERT INTO missionary_service (
+    user_id,
     missionary_title,
     mission_local,
     mission_start,
@@ -198,51 +236,61 @@ VALUES (
     '03-23-2007'
 );
 
-INSERT INTO public.missionary_service (
-    users_id, 
+SELECT * FROM missionary_service;
+
+INSERT INTO missionary_service (
+    user_id, 
     missionary_title, 
     mission_local, 
     mission_start, 
     mission_end) 
 VALUES (
-    CURRVAL('users_users_id_seq'),
+    CURRVAL('user_access_user_id_seq'),
     'Elder Yopán',
     'Missão Brasil Brasília',
     '06-06-2006',
     '06-06-2008'
 );
 
+SELECT * FROM missionary_service;
+
 /* INSERT TRANSFER INTO MISSIONARY_TIMELINE */
 
-INSERT INTO public.missionary_timeline (
-    users_id,
+INSERT INTO missionary_timeline (
+    user_id,
     unit_id,
     companion_name,
     transfer_start,
     transfer_end)
 VALUES (
-    (SELECT users_id FROM users WHERE username = 'leonidasyopan'),
+    (SELECT user_id FROM user_access WHERE username = 'leonidasyopan'),
     (SELECT unit_id FROM unit WHERE unit_name = 'Ramo Oswaldo Cruz'),
     'Elder Evans',
     '07-10-2005',
     '08-24-2005'
 );
 
-INSERT INTO public.missionary_timeline (
-    users_id,
+SELECT * FROM missionary_timeline;
+
+INSERT INTO missionary_timeline (
+    user_id,
     unit_id,
     companion_name,
     transfer_start,
     transfer_end)
 VALUES (
-    (SELECT users_id FROM users WHERE username = 'leonidasyopan'),
+    (SELECT user_id FROM user_access WHERE username = 'leonidasyopan'),
     (SELECT unit_id FROM unit WHERE unit_name = 'Ramo Nova Tupã'),
     'Elder Price',
     '07-03-2006',
     '08-05-2006'
 );
 
-INSERT INTO public.missionary_timeline (users_id, unit_id, companion_name, transfer_start, transfer_end) VALUES (CURRVAL('users_users_id_seq'), CURRVAL('unit_unit_id_seq'), 'Elder Pereira', '2007-07-01', '2009-07-01');
+SELECT * FROM missionary_timeline;
+
+INSERT INTO missionary_timeline (user_id, unit_id, companion_name, transfer_start, transfer_end) VALUES (CURRVAL('user_access_user_id_seq'), CURRVAL('unit_unit_id_seq'), 'Elder Pereira', '2007-07-01', '2009-07-01');
+
+SELECT * FROM missionary_timeline;
 
 
 /***************************************
@@ -274,16 +322,18 @@ WHERE
 
 /* A DELETE STATEMENT IN CASE DATA WAS WRONGLY INSERTED */
 
-DELETE FROM public.missionary_service 
+DELETE FROM missionary_service 
     WHERE user_id = (SELECT user_id FROM users WHERE username = 'leonidasyopan');
 
+DELETE FROM unit
+    WHERE unit_id = 3;
 
 
 
 /* JOIN TABLES */
 
 SELECT
-    us.first_name || ' ' || us.last_name AS full_name,
+    up.first_name || ' ' || up.last_name AS full_name,
     ms.missionary_title AS missionary_name,
     ms.mission_local,
     mt.companion_name AS companion,
@@ -292,12 +342,12 @@ SELECT
     mt.transfer_start,
     mt.transfer_end
 FROM
-    public.users us
-INNER JOIN public.missionary_timeline mt ON us.users_id = mt.users_id
-INNER JOIN public.unit un ON un.unit_id = mt.unit_id
-INNER JOIN public.missionary_service ms ON us.users_id = ms.users_id
+    user_profile up
+INNER JOIN missionary_timeline mt ON up.user_id = mt.user_id
+INNER JOIN unit un ON un.unit_id = mt.unit_id
+INNER JOIN missionary_service ms ON up.user_id = ms.user_id
     WHERE un.unit_name = 'Ramo Oswaldo Cruz';
 
 
-CURRVAL('users_users_id_seq');
-CURRVAL('unit_unit_id_seq')
+CURRVAL('user_access_user_id_seq');
+CURRVAL('unit_unit_id_seq');
