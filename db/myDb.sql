@@ -8,7 +8,7 @@ CREATE TABLE user_access (
     user_id             SERIAL         PRIMARY KEY      NOT NULL,
     username            VARCHAR(100)                    NOT NULL    UNIQUE,
     password            VARCHAR(255)                    NOT NULL,
-    email               VARCHAR(50)                     NOT NULL,    
+    email               VARCHAR(255)                    NOT NULL,    
     user_create_date    DATE
 );
 
@@ -16,9 +16,9 @@ SELECT * FROM user_access;
 
 CREATE TABLE user_profile (
     user_id             INTEGER                         NOT NULL,
-    first_name          VARCHAR(30),   
-    middle_name         VARCHAR(30),
-    last_name           VARCHAR(30),
+    first_name          VARCHAR(255),   
+    middle_name         VARCHAR(255),
+    last_name           VARCHAR(255),
     birthday            DATE,
     phone_number        VARCHAR(20),
     returned_missionary BOOLEAN,
@@ -31,21 +31,21 @@ SELECT * FROM user_profile;
 CREATE TABLE unit (
     unit_id         SERIAL      PRIMARY KEY         NOT NULL,
     unit_number     INTEGER,
-    unit_name       VARCHAR(50),
-    stake_name      VARCHAR(50),
-    city            VARCHAR(50),
-    state           VARCHAR(50),
-    country         VARCHAR(50)
+    unit_name       VARCHAR(255),
+    stake_name      VARCHAR(255),
+    city            VARCHAR(255),
+    state           VARCHAR(255),
+    country         VARCHAR(255)
 );
 
 SELECT * FROM unit;
 
 CREATE TABLE missionary_service (
     user_id                 INTEGER         NOT NULL,
-    missionary_title        VARCHAR(30)     NOT NULL,
-    mission_local           VARCHAR(30)     NOT NULL,
-    mission_start           DATE            NOT NULL,
-    mission_end             DATE            NOT NULL,
+    missionary_title        VARCHAR(255),
+    mission_local           VARCHAR(255),
+    mission_start           DATE,
+    mission_end             DATE,
     CONSTRAINT missionary_service_fk_1    FOREIGN KEY(user_id)      REFERENCES user_access(user_id)            
 );
 
@@ -54,9 +54,9 @@ SELECT * FROM missionary_service;
 CREATE TABLE missionary_timeline (
     user_id             INTEGER             NOT NULL,
     unit_id             INTEGER             NOT NULL,
-    companion_name      VARCHAR(30)         NOT NULL,
-    transfer_start      DATE                NOT NULL,
-    transfer_end        DATE                NOT NULL,
+    companion_name      VARCHAR(30),
+    transfer_start      DATE,
+    transfer_end        DATE,
     CONSTRAINT missionary_timeline_fk_1    FOREIGN KEY(user_id)      REFERENCES user_access(user_id),
     CONSTRAINT missionary_timeline_fk_2    FOREIGN KEY(unit_id)      REFERENCES unit(unit_id)   
 );
@@ -251,6 +251,10 @@ VALUES (
     '06-06-2006',
     '06-06-2008'
 );
+
+SELECT * FROM missionary_service;
+
+INSERT INTO missionary_service (user_id, missionary_title, mission_local, mission_start, mission_end) VALUES (CURRVAL('user_access_user_id_seq'), 'Elder Barbosa', 'Missão Brasil Porto Alegre Sul', '2010-07-13', '2012-07-13');
 
 SELECT * FROM missionary_service;
 
