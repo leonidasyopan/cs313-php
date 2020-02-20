@@ -355,3 +355,7 @@ INNER JOIN missionary_service ms ON up.user_id = ms.user_id
 
 CURRVAL('user_access_user_id_seq');
 CURRVAL('unit_unit_id_seq');
+
+SELECT * FROM user_access WHERE username='leonidasyopan' OR email='yopanssudo@gmail.com' LIMIT 1;
+
+SELECT password FROM user_access WHERE username='arthuryopan';
