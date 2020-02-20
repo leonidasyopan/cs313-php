@@ -66,7 +66,7 @@ SELECT * FROM missionary_timeline;
 CREATE TABLE password_resets (
     id          SERIAL            PRIMARY KEY       NOT NULL,
     email       VARCHAR(255)                        NOT NULL,
-    token      VARCHAR(255)                         NOT NULL
+    token       VARCHAR(255)                        NOT NULL
 );
 
 SELECT * FROM password_resets;
